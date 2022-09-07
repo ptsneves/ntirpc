@@ -197,13 +197,14 @@ set(SYSTEM_LIBRARIES
   ${SYSTEM_LIBRARIES}
 )
 
-if (NOT BSDBASED)
+option(USE_LIBNSL "Enable NSL sockets" ON)
+if (USE_LIBNSL)
   find_package(NSL) # sockets
   set(SYSTEM_LIBRARIES
     ${SYSTEM_LIBRARIES}
     ${NSL_LIBRARY}
   )
-endif (NOT BSDBASED)
+endif (USE_LIBNSL)
 
 set(LIBNTIRPC_MAP "${PROJECT_BINARY_DIR}/src/libntirpc.map")
 # subst files (need add_custom_command for dependency, fyi)
@@ -221,6 +222,7 @@ message(STATUS)
 message(STATUS "-------------------------------------------------------")
 message(STATUS "TIRPC_EPOLL = ${TIRPC_EPOLL}")
 message(STATUS "USE_RPC_RDMA = ${USE_RPC_RDMA}")
+message(STATUS "USE_LIBNSL = ${USE_LIBNSL}")
 message(STATUS "USE_GSS = ${USE_GSS}")
 message(STATUS "USE_PROFILE = ${USE_PROFILE}")
 message(STATUS "USE_LTTNG_NTIRPC = ${USE_LTTNG_NTIRPC}")

@@ -20,6 +20,10 @@
 #cmakedefine TIRPC_EPOLL 1
 #cmakedefine USE_RPC_RDMA 1
 #cmakedefine USE_LTTNG_NTIRPC 1
+#cmakedefine USE_LIBNSL 1
+#ifdef USE_LIBNSL
+#define YP 1
+#endif
 
 /* Package stuff */
 #define PACKAGE "libntirpc"
