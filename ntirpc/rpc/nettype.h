@@ -55,12 +55,16 @@
 #define	_RPC_UDP	8
 #define _RPC_VSOCK      9 /* XXX assignment */
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void *__rpc_setconf(const char *);
 extern void __rpc_endconf(void *);
 extern struct netconfig *__rpc_getconf(void *);
 extern struct netconfig *__rpc_getconfip(const char *);
 extern struct netbuf *rpcb_find_mapped_addr(char *nettype, rpcprog_t prog,
 					    rpcvers_t vers, char *local_addr);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* !_TIRPC_NETTYPE_H */

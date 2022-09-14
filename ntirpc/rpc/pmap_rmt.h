@@ -60,8 +60,12 @@ struct rmtcallres {
 	rpcport_t port;
 };
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern bool xdr_rmtcall_args(XDR *, struct rmtcallargs *);
 extern bool xdr_rmtcallres(XDR *, struct rmtcallres *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* !_RPC_PMAP_RMT_H */

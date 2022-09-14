@@ -72,7 +72,9 @@
 #define UDPMSGSIZE 8800
 #endif
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern int bindresvport(int, struct sockaddr_in *);
 
 char *taddr2uaddr(const struct netconfig *, const struct netbuf *);
@@ -85,16 +87,22 @@ extern bool tirpc_control(const u_int, void *);
 extern void *__mem_alloc(size_t);
 extern void __mem_free(void *, size_t);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * The following are not exported interfaces, they are for internal library
  * and rpcbind use only. Do not use, they may change without notice.
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 int __rpc_nconf2fd(const struct netconfig *);
 int __rpc_nconf2fd_flags(const struct netconfig *, int);
 int __rpc_nconf2sockinfo(const struct netconfig *, struct __rpc_sockinfo *);
 int __rpc_fd2sockinfo(int, struct __rpc_sockinfo *);
 u_int __rpc_get_t_size(int, int, int);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* !_RPC_RPC_H */

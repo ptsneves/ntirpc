@@ -108,7 +108,9 @@ struct rpc_gss_init_res {
 typedef void (*checksum_func_t) (void *priv, void *databuf, size_t length);
 
 /* Prototypes. */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 bool xdr_rpc_gss_cred(XDR *xdrs, struct rpc_gss_cred *p);
 bool xdr_rpc_gss_init_args(XDR *xdrs, gss_buffer_desc *p);
 bool xdr_rpc_gss_init_res(XDR *xdrs, struct rpc_gss_init_res *p);
@@ -128,6 +130,8 @@ bool authgss_get_private_data(AUTH *auth, struct authgss_private_data *);
 
 void gss_log_status(char *m, OM_uint32 major, OM_uint32 minor);
 void gss_log_hexdump(const u_char *buf, int len, int offset);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif				/* !_TIRPC_AUTH_GSS_H */

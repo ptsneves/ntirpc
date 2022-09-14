@@ -367,7 +367,9 @@ static inline void clnt_destroy_it(CLIENT *clnt,
  * Always returns CLIENT. Must check cl_error.re_status,
  * followed by CLNT_DESTROY() as necessary.
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * Generic client creation routine. Supported protocols are those that
@@ -584,14 +586,20 @@ enum clnt_stat clnt_req_setup(struct clnt_req *, struct timespec);
 enum clnt_stat clnt_req_wait_reply(struct clnt_req *);
 int clnt_req_release(struct clnt_req *);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Used by rpc_perror() and rpc_sperror()
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void clnt_perrno(enum clnt_stat);	/* stderr */
 extern char *clnt_sperrno(enum clnt_stat);	/* string */
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * The simplified interface:
  * enum clnt_stat
@@ -606,13 +614,17 @@ __END_DECLS
  * void *out;
  * const char *nettype;
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern enum clnt_stat rpc_call(const char *, const rpcprog_t,
 			       const rpcvers_t, const rpcproc_t,
 			       const xdrproc_t, const void *,
 			       const xdrproc_t, void *,
 			       const char *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * RPC broadcast interface
  * The call is broadcasted to all locally connected nets.
@@ -658,7 +670,9 @@ __END_DECLS
  */
 typedef bool(*resultproc_t) (void *, ...);
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern enum clnt_stat rpc_broadcast(const rpcprog_t,
 				    const rpcvers_t,
 				    const rpcproc_t,
@@ -671,7 +685,9 @@ extern enum clnt_stat rpc_broadcast_exp(const rpcprog_t, const rpcvers_t,
 					void *, const xdrproc_t, void *,
 					const resultproc_t, const int,
 					const int, const char *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /* For backward compatibility */
 #include <rpc/tirpc_compat.h>
 #endif				/* !_TIRPC_CLNT_H_ */

@@ -640,7 +640,9 @@ xdr_putbool(XDR *xdrs, bool_t boolv)
 /*
  * These are the "generic" xdr routines.
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern XDR xdr_free_null_stream;
 
 extern bool xdr_void(XDR *, void *);
@@ -656,7 +658,9 @@ extern bool xdr_wrapstring(XDR *, char **);
 extern bool xdr_longlong_t(XDR *, quad_t *);
 extern bool xdr_u_longlong_t(XDR *, u_quad_t *);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 /*
  * Free a data structure using XDR
@@ -684,14 +688,18 @@ extern bool xdr_nnetobj(XDR *, struct netobj *);
  * These are the public routines for the various implementations of
  * xdr streams.
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 /* XDR using memory buffers */
 extern void xdrmem_ncreate(XDR *, char *, u_int, enum xdr_op);
 
 /* intrinsic checksum (be careful) */
 extern uint64_t xdrmem_cksum(XDR *, u_int);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /* For backward compatibility */
 #include <rpc/tirpc_compat.h>
 #endif				/* !_TIRPC_XDR_H */

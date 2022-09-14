@@ -361,9 +361,13 @@ extern void svc_resume(struct svc_req *req);
 /*
  * Trace transport (de-)references, with remote address
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void svc_xprt_trace(SVCXPRT *, const char *, const char *, const int);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #define XPRT_TRACE(xprt, func, tag, line)				 \
 	if (__ntirpc_pkg_params.debug_flags & TIRPC_DEBUG_FLAG_REFCNT) { \
@@ -493,17 +497,25 @@ static inline void svc_destroy_it(SVCXPRT *xprt,
  * Service init (optional).
  */
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern struct work_pool svc_work_pool;
 
 bool svc_init(struct svc_init_params *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Service shutdown (optional).
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 int svc_shutdown(u_long flags);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Service registration
  *
@@ -514,11 +526,15 @@ __END_DECLS
  * const void (*dispatch)();
  * const struct netconfig *nconf;
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern bool svc_reg(SVCXPRT *, const rpcprog_t, const rpcvers_t,
 		    void (*)(struct svc_req *),
 		    const struct netconfig *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Service un-registration
  *
@@ -526,15 +542,21 @@ __END_DECLS
  * const rpcprog_t prog;
  * const rpcvers_t vers;
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void svc_unreg(const rpcprog_t, const rpcvers_t);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * This is used to set local and remote addresses in a way legacy
  * apps can deal with, at the same time setting up a corresponding
  * netbuf -- with no alloc/free needed.
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern u_int __rpc_address_port(struct rpc_address *);
 extern void __rpc_address_set_length(struct rpc_address *, socklen_t);
 
@@ -545,7 +567,9 @@ __rpc_address_setup(struct rpc_address *rpca)
 	rpca->nb.len =
 	rpca->nb.maxlen = sizeof(struct sockaddr_storage);
 }
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * When the service routine is called, it must first check to see if it
  * knows about the procedure;  if not, it should call svcerr_noproc
@@ -571,7 +595,9 @@ __END_DECLS
  * batched and which are not.  Warning: responding to batch calls may
  * deadlock the caller and server processes!
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern enum xprt_stat svc_sendreply(struct svc_req *);
 extern enum xprt_stat svcerr_decode(struct svc_req *);
 extern enum xprt_stat svcerr_weakauth(struct svc_req *);
@@ -582,14 +608,20 @@ extern enum xprt_stat svcerr_noprog(struct svc_req *);
 extern enum xprt_stat svcerr_systemerr(struct svc_req *);
 extern int rpc_reg(rpcprog_t, rpcvers_t, rpcproc_t, char *(*)(char *),
 		   xdrproc_t, xdrproc_t, char *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * a small program implemented by the svc_rpc implementation itself;
  * also see clnt.h for protocol numbers.
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void rpctest_service(void);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Socket to use on svcxxx_ncreate call to get default socket
  */
@@ -603,7 +635,9 @@ __END_DECLS
 /*
  * These are the existing service side transport implementations
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 /*
  * Transport independent svc_create routine.
  */
@@ -644,7 +678,9 @@ extern SVCXPRT *svc_tli_ncreate(const int, const struct netconfig *,
  *      const u_int sendsz;             -- max sendsize
  *      const u_int recvsz;             -- max recvsize
  */
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 /*
  * Connectionless and connectionful create routines
@@ -659,7 +695,9 @@ __END_DECLS
 #define SVC_CREATE_FLAG_XPRT_DOREG	0x80000000
 #define SVC_CREATE_FLAG_XPRT_NOREG	0x08000000
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern SVCXPRT *svc_vc_ncreatef(const int, const u_int, const u_int,
 				const uint32_t);
@@ -758,7 +796,9 @@ extern bool svc_validate_xprt_list(SVCXPRT *);
 
 int __rpc_get_local_uid(SVCXPRT *, uid_t *);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /* for backward compatibility */
 #include <rpc/tirpc_compat.h>
 #endif				/* !_TIRPC_SVC_H */

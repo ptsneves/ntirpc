@@ -178,7 +178,9 @@ struct rpc_msg {
 #define RPCM_ack ru.RM_rmb.ru.RP_ar
 #define RPCM_rej ru.RM_rmb.ru.RP_dr
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 static inline void
 rpc_msg_init(struct rpc_msg *msg)
 {
@@ -248,7 +250,9 @@ extern bool xdr_nrejected_reply(XDR *, struct rejected_reply *);
  *  struct rpc_err *error;
  */
 extern void _seterr_reply(struct rpc_msg *, struct rpc_err *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /* For backward compatibility */
 #include <rpc/tirpc_compat.h>
 #endif				/* !_TIRPC_RPC_MSG_H */

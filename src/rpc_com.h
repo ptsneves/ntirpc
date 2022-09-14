@@ -58,7 +58,9 @@
 			   (u_int32_t)((now)->tv_nsec))
 #endif				/* !__RPC_GETXID */
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern u_int __rpc_get_a_size(int);
 extern int __rpc_dtbsize(void);
 extern struct netconfig *__rpcgettp(int);
@@ -84,5 +86,7 @@ bool __rpc_control(int, void *);
 
 char *_get_next_token(char *, int);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* _TIRPC_RPCCOM_H */

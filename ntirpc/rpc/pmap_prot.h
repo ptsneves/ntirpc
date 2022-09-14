@@ -41,7 +41,9 @@
 #endif
 #include <rpc/xdr.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 /* The following procedures are supported by the protocol:
  *
  * PMAPPROC_NULL() returns ()
@@ -100,5 +102,7 @@ struct pmaplist {
 
 extern bool xdr_pmaplist(XDR *__xdrs, struct pmaplist **__rp);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* rpc/pmap_prot.h */

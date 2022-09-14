@@ -82,7 +82,9 @@ typedef struct {
 #define NC_ICMP		"icmp"
 
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void *setnetconfig(void);
 extern struct netconfig *getnetconfig(void *);
 extern struct netconfig *getnetconfigent(const char *);
@@ -96,5 +98,7 @@ extern int endnetpath(void *);
 extern void nc_perror(const char *);
 extern char *nc_sperror(void);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* _NETCONFIG_H_ */

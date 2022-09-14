@@ -191,10 +191,14 @@ extern int kqueue_del_filteropts(int filt);
 #include <sys/cdefs.h>
 struct timespec;
 
-__BEGIN_DECLS int kqueue(void);
+#ifdef __cplusplus
+extern "C" {
+#endif int kqueue(void);
 int kevent(int kq, const struct kevent *changelist, int nchanges,
 	   struct kevent *eventlist, int nevents,
 	   const struct timespec *timeout);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* !_KERNEL */
 #endif				/* !_TIRPC_EVENT_H_ */

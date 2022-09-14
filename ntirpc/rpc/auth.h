@@ -96,9 +96,13 @@ union des_block {
 	char c[8];
 };
 typedef union des_block des_block;
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern bool xdr_des_block(XDR *, des_block *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Authentication info.  Opaque to client.
  */
@@ -219,9 +223,13 @@ static inline int auth_put(AUTH *auth)
 	((*((auth)->ah_ops->ah_unwrap))(auth, xdrs,	\
 					xfunc, xwhere))
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern struct opaque_auth _null_auth;
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Any style authentication.  These routines can be used by any
  * authentication style that does not use the wrap/unwrap functions.
@@ -244,52 +252,72 @@ int authany_wrap(void), authany_unwrap(void);
  * int len;
  * int *aup_gids;
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern AUTH *authunix_ncreate(char *, uid_t, uid_t, int, uid_t *);
 extern AUTH *authunix_ncreate_default(void);	/* takes no parameters */
 extern AUTH *authnone_ncreate(void);	/* takes no parameters */
 extern AUTH *authnone_ncreate_dummy(void);	/* takes no parameters */
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Netname manipulation routines.
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern int getnetname(char *);
 extern int host2netname(char *, const char *, const char *);
 extern int user2netname(char *, const uid_t, const char *);
 extern int netname2user(char *, uid_t *, gid_t *, int *, gid_t *);
 extern int netname2host(char *, char *, const int);
 extern void passwd2des(char *, char *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  *
  * These routines interface to the keyserv daemon
  *
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern int key_decryptsession(const char *, des_block *);
 extern int key_encryptsession(const char *, des_block *);
 extern int key_gendes(des_block *);
 extern int key_setsecret(const char *);
 extern int key_secretkey_is_set(void);
 extern int key_encryptsession_pk(char *, netobj *, des_block *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Publickey routines.
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern int getpublickey(const char *, char *);
 extern int getpublicandprivatekey(char *, char *);
 extern int getsecretkey(char *, char *, char *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 struct svc_req;
 enum auth_stat _svcauth_none(struct svc_req *);
 enum auth_stat _svcauth_short(struct svc_req *);
 enum auth_stat _svcauth_unix(struct svc_req *);
 enum auth_stat _svcauth_gss(struct svc_req *, bool *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #define AUTH_NONE 0		/* no authentication */
 #define AUTH_NULL 0		/* backward compatibility */

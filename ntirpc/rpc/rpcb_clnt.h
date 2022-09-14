@@ -60,7 +60,9 @@
 #include <rpc/types.h>
 #include <rpc/rpcb_prot.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern bool rpcb_set(const rpcprog_t, const rpcvers_t,
 		     const struct netconfig *,
 		     const struct netbuf *);
@@ -79,5 +81,7 @@ extern bool rpcb_getaddr(const rpcprog_t, const rpcvers_t,
 extern bool rpcb_gettime(const char *, time_t *);
 extern char *rpcb_taddr2uaddr(struct netconfig *, struct netbuf *);
 extern struct netbuf *rpcb_uaddr2taddr(struct netconfig *, char *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* !_RPC_RPCB_CLNT_H */

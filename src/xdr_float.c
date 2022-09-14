@@ -91,7 +91,12 @@ static struct sgl_limits {
 #else
 
 #if defined(__linux__)
+#if defined (__GLIBC__)
 #include <bits/endian.h>
+#else
+#include <endian.h>
+#endif
+
 #elif defined(_WIN32)
 /* XXX */
 #elif defined(__APPLE__)

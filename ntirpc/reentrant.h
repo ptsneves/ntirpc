@@ -53,7 +53,7 @@
 #define once_t			pthread_once_t
 
 #define thread_key_t		pthread_key_t
-#if defined(__linux__)
+#if defined(__linux__) && defined(__GLIBC__) && (__GLIBC__ > 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 2))
 #define MUTEX_INITIALIZER	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP
 #else
 #define MUTEX_INITIALIZER	PTHREAD_MUTEX_INITIALIZER
@@ -69,8 +69,8 @@ mutex_init(pthread_mutex_t *m, const pthread_mutexattr_t *a
 	int rslt;
 
 	pthread_mutexattr_init(&attr);
-#if defined(__linux__)
-	pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_ADAPTIVE_NP);
+#if defined(__linux__) && defined(__GLIBC__) && (__GLIBC__ > 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 2))
+  pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_ADAPTIVE_NP);
 #endif
 	rslt = pthread_mutex_init(m, &attr);
 	pthread_mutexattr_destroy(&attr);

@@ -81,19 +81,31 @@
 /*
  * Cipher Block Chaining mode
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 int cbc_crypt(char *, char *, unsigned int, unsigned int, char *);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Electronic Code Book mode
  */
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 int ecb_crypt(char *, char *, unsigned int, unsigned int);
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 /*
  * Set des parity for a key.
  * DES parity is odd and in the low bit of each byte
  */
-__BEGIN_DECLS void des_setparity(char *);
-__END_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif void des_setparity(char *);
+#ifdef __cplusplus
+}
+#endif
 #endif				/* _DES_DES_CRYPT_H */

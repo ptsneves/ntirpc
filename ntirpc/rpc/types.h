@@ -50,9 +50,6 @@
 
 #if defined(_WIN32)
 
-#define __BEGIN_DECLS
-#define __END_DECLS
-
 /* integral types */
 #ifndef _MSC_VER
 #include <_bsd_types.h>		/* XXX mingw (defines u_long) */

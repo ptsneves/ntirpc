@@ -56,7 +56,9 @@
 	((u_int32_t)getpid() ^ (u_int32_t)(now)->tv_sec ^ \
 	 (u_int32_t)(now)->tv_usec)
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern u_int __rpc_get_a_size(int);
 extern int __rpc_dtbsize(void);
 extern int _rpc_dtablesize(void);
@@ -76,5 +78,7 @@ struct netbuf *__rpcb_findaddr(rpcprog_t, rpcvers_t, const struct netconfig *,
 bool rpc_control(int, void *);
 char *_get_next_token(char *, int);
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 #endif				/* _RPC_RPCCOM_H */
